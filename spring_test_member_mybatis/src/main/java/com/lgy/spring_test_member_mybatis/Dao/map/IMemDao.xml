@@ -1,0 +1,19 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- com.lgy.spring_mvc_board_mybatis.dao.IBDao패키지와 연결시켜준다. -->
+<mapper namespace="com.lgy.spring_test_member_mybatis.Dao.IMemDao">
+  
+
+<!-- 	IBDao의 list랑 매핑시켜준다. -->
+    <select id="userCheck" resultType="com.lgy.spring_test_member_mybatis.Dto.MemDto">
+        select mem_pwd FROM mvc_member WHERE mem_uid= #{param1}
+    </select>
+    <insert id="register">
+    
+   		insert into mvc_member(mem_uid, mem_pwd,mem_name) values
+    				(#{param1},#{param2},#{param3})
+    </insert>
+
+</mapper>
