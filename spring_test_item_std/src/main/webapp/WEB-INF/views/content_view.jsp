@@ -15,7 +15,7 @@
 			<td>가격</td>
 			<td>설명</td>
 		</tr>
-		<c:forEach items="${list}" var="dto">
+		<c:forEach items="${content_view}" var="dto">
 			<tr>
 				<td>${dto.name}</td>
 				<td>${dto.price}</td>

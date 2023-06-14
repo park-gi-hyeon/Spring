@@ -3,16 +3,16 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- com.lgy.spring_mvc_board_mybatis.dao.IBDao패키지와 연결시켜준다. -->
-<mapper namespace="com.lgy.spring_test_item_mybatis.ItemDao.ItemDao">
+<mapper namespace="com.lgy.spring_test_item_std.dao.ItemDao">
   
 
 <!-- 	IBDao의 list랑 매핑시켜준다. -->
     <insert parameterType="hashmap" id="write">
-    	insert into item(name, price, description)values(#{name},#{price},#{description}) 
+    	insert into test_item(name, price, description)values(#{name},#{price},#{description}) 
     </insert>
 
 	<select id="contentView" resultType="com.lgy.spring_test_item_std.dto.ItemDto">	
-	select name, price, description from item 
+	select name, price, description from test_item 
 	</select>
 
 </mapper>
