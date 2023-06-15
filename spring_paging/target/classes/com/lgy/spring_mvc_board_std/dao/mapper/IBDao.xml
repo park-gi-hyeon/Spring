@@ -10,6 +10,7 @@
     
     <select id="listWithPaging" resultType="com.lgy.spring_mvc_board_std.dto.BDto">
 <!--     	<![CDATA[]]> : mybatis 에서 특수문자 인식 처리 -->
+<!-- order by bid desc : Where RowNum 뒤에 정렬 조건 추가해서 최신순으로 조회 가능 -->
     	<![CDATA[
     		select bid,bname,btitle,bcontent,bdate,bhit
 			from(select rownum rn,bid,bname,btitle,bcontent,bdate,bhit 
@@ -21,8 +22,10 @@
 	</select>
     
     <insert id="write" parameterType="hashmap">
+<!-- 		insert into mvc_board(bid, bname, btitle, bcontent, bhit) values -->
+<!-- 						(MVC_BOARD_SEQ.NEXTVAL,#{bname},#{btitle},#{bcontent},0) -->
 		insert into mvc_board(bid, bname, btitle, bcontent, bhit) values
-						(MVC_BOARD_SEQ.NEXTVAL,#{bname},#{btitle},#{bcontent},0)
+						((select max(bid)+1 from mvc_board),#{bname},#{btitle},#{bcontent},0)
     </insert>
     
     <select id="contentView" parameterType="hashmap" resultType="com.lgy.spring_mvc_board_std.dto.BDto">
