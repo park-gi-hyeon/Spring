@@ -26,7 +26,8 @@
 				<td>${dto.bid}</td>
 				<td>${dto.bname}</td>
 				<td>
-					<a href="content_view?bid=${dto.bid}">${dto.btitle}</a>
+<%-- 					<a href="content_view?bid=${dto.bid}">${dto.btitle}</a> --%>
+					<a class="move_link" href="${dto.bid}">${dto.btitle}</a>
 				</td>
 				<td>${dto.bdate}</td>
 				<td>${dto.bhit}</td>
@@ -72,17 +73,17 @@
 		</ul>
 	</div>
 	
-	<form method="get" id="actionForm" action="#">
+	<form method="get" id="actionForm" action="list">
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 	</form>
-	
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	var actionForm = $("#actionForm");
 	
+// 	페이지번호 처리
 	$(".paginate_button a").on("click", function(e){
 // 		기본 동작 막음: 페이지 링크를 통해서 이동
 		e.preventDefault();
@@ -90,6 +91,19 @@
 		console.log("@# href ===>"+$(this).attr("href"));
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		actionForm.submit();
+	});
+	
+// 	게시글 처리
+	$(".move_link").on("click",function(e){
+		e.preventDefault();
+		var targetBno = $(this).attr("href");
+// 		console.log("move click~!!!");
+// 		console.log("@# href ===>"+$(this).attr("href"));
+// "content_view?bid=${dto.bid}" 에 있는 ?bid= 의 bid 와 name 을 매칭
+		actionForm.append("<input type='hidden' name='bid' value='"+targetBno+"'>")
+// 		actionForm.attr("action","content_view");//오류
+// 컨트롤러에 content_view 로 찾아감
+		actionForm.attr("action","content_view").submit();
 	});
 </script>
 
