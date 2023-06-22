@@ -99,6 +99,14 @@
 		var targetBno = $(this).attr("href");
 // 		console.log("move click~!!!");
 // 		console.log("@# href ===>"+$(this).attr("href"));
+
+		게시글 클릭후 뒤로가기 누를때 &bid=번호 누적되는거 방지
+		var bno = actionForm.find("input[name='bid']").val();
+		if(bno != ''){
+			actionForm.find("input[name='bid']").remove();
+		}
+
+
 // "content_view?bid=${dto.bid}" 에 있는 ?bid= 의 bid 와 name 을 매칭
 		actionForm.append("<input type='hidden' name='bid' value='"+targetBno+"'>")
 // 		actionForm.attr("action","content_view");//오류
