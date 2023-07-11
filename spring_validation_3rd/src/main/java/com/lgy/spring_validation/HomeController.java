@@ -35,5 +35,10 @@ public class HomeController {
 		
 		return "home";
 	}
+//	sercurity:intercept-url pattern="login.html*" 대상이 된다
+	@RequestMapping("login.html")
+	public String login() {
+		return "security/login";
+	}
 	
 }
